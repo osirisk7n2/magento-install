@@ -40,10 +40,10 @@
             </db>
             <default_setup>
                 <connection>
-                    <host><![CDATA[localhost]]></host>
-                    <username><![CDATA[root]]></username>
-                    <password><![CDATA[root]]></password>
-                    <dbname><![CDATA[demo-magento-install]]></dbname>
+                    <host><![CDATA[tunnel.pagodabox.com]]></host>
+                    <username><![CDATA[angie]]></username>
+                    <password><![CDATA[DId3VNyf]]></password>
+                    <dbname><![CDATA[mag-db]]></dbname>
                     <initStatements><![CDATA[SET NAMES utf8]]></initStatements>
                     <model><![CDATA[mysql4]]></model>
                     <type><![CDATA[pdo_mysql]]></type>
