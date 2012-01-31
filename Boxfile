@@ -1,5 +1,5 @@
 web1: 
-  name: magento 
+  name: mag-app 
   shared_writable_dirs:
     - media
     - var
@@ -15,3 +15,9 @@ web1:
     - soap
     - memcache
     - eaccelerator
+db1: #component type & number
+  name: mag-db #component settings
+  type: mysql
+cache1: #component type & number
+  name: mag-cache #component settings
+  type: memcache
