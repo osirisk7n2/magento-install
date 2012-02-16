@@ -1,0 +1,21 @@
+fork still not working
+
+form collected info
+
+Installer Setup
+	core_config
+		- language
+ 		- time zone
+ 		- currency
+ 		- url
+ 		- charts
+ 		- rewrites
+ 		- ssl
+	admin_user
+		- admin account
+	admin_role
+		- role
+ 	local.xml
+ 		- db creds
+ 		- admin path
+ 		- session save
