@@ -1,49 +1,5 @@
 <?php 
 
-// class Obj2xml {
-
-//     var $xmlResult;
-    
-//     function __construct($rootNode){
-//         $this->xmlResult = new SimpleXMLElement("<$rootNode></$rootNode>");
-//     }
-    
-//     private function iteratechildren($object,$xml){
-//         foreach ($object as $name=>$value) {
-//             if (is_string($value) || is_numeric($value)) {
-//                 $xml->$name=$value;
-//             } else {
-//                 $xml->$name=null;
-//                 $this->iteratechildren($value,$xml->$name);
-//             }
-//         }
-//     }
-    
-//     function toXml($object) {
-//         $this->iteratechildren($object,$this->xmlResult);
-//         return $this->xmlResult->asXML();
-//     }
-// }
-
-
-// experimenting loading template
-// $local_xml_template = simplexml_load_file('local.xml.template');
-// $local_xml_template = simplexml_load_file('../app/etc/local.xml.template');
-// print_r($local_xml_template->global->install); die;
-
-// todo incorporate header
-// header("Content-Type:text/xml");
-
-// $ob->global->install->date = $xml->writeCData('Tue, 31 Jan 2012 16:26:32 +0000');
-// $ob->global->crypt = "<![CDATA[a1c7cec1bc010e443bff2ef1df04fe3a]]";
-// $ob->global->disable_local_modules = "<![CDATA[false]]";
-// $ob->global->resources->db->table_prefix = "<![CDATA[]]";
-// $ob->global->resources->default_setup->connection->host = '<![CDATA[' . $_SERVER['DB1_HOST'] . ']]>';
-// $ob->global->resources->default_setup->connection->username = '<![CDATA[' . $_SERVER['DB1_USER'] . ']]>';
-// $local_xml = $converter->toXml($ob);
-
-// $converter = new Obj2xml("config");
-
 // set up the document
 $xml = new XmlWriter();
 $xml->openMemory();
