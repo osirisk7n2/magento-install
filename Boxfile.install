@@ -1,0 +1,3 @@
+web1: 
+  before_deploy:
+    - "php var/www/pagoda/db_import.php"
