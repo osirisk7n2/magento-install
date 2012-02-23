@@ -118,7 +118,7 @@ $xml->startElement('conifig');
     $xml->endElement(); //admin
 $xml->endElement(); //config
 
-$handle = fopen('/var/www/app/etc/local.xml', 'a');
+$handle = fopen('var/www/app/etc/local.xml', 'a');
 fwrite($handle, $xml->outputMemory(true));
     
 ?>
