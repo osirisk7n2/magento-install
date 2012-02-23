@@ -7,7 +7,7 @@ if (!$link) {
   die('Could not connect: ' . mysql_error());
 }
 mysql_select_db($_SERVER["DB1_NAME"]);
-$parseObj = new ParseSql('/var/pagoda/dbsetup.sql');
+$parseObj = new ParseSql('/var/www/pagoda/dbsetup.sql');
 
 // echo 'sql file parse: START' . '<br />';
 
