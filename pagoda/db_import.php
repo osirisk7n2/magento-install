@@ -1,13 +1,13 @@
 <?php 
 
-include ('sql_parse.php');
+include ('/var/www/pagoda/sql_parse.php');
 
 $link = mysql_connect($_SERVER["DB1_HOST"], $_SERVER["DB1_USER"], $_SERVER["DB1_PASS"]);
 if (!$link) {
   die('Could not connect: ' . mysql_error());
 }
 mysql_select_db($_SERVER["DB1_NAME"]);
-$parseObj = new ParseSql('/var/www/pagoda/dbsetup.sql');
+$parseObj = new ParseSql('/var/www/pagoda/db_setup.sql');
 
 // echo 'sql file parse: START' . '<br />';
 
