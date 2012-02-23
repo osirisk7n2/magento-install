@@ -17,7 +17,7 @@ web1:
     - memcache
     - eaccelerator
   after_build:
-    - "php var/www/pagoda/local_xml_generator.php"
+    - "php /var/www/pagoda/local_xml_generator.php"
 db1: #component type & number
   name: mag-db #component settings
   type: mysql
