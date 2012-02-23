@@ -19,3 +19,13 @@ Installer Setup
  		- db creds
  		- admin path
  		- session save
+
+
+override installer
+	- adjust isinstalled logic
+		- currently 
+	- local.xml override where it gets db creds
+	- remove db fields from install wizard
+
+	mv any files
+	create local.xml

@@ -1,43 +1,124 @@
 <?php 
 
-class Obj2xml {
+// class Obj2xml {
 
-    var $xmlResult;
+//     var $xmlResult;
     
-    function __construct($rootNode){
-        $this->xmlResult = new SimpleXMLElement("<$rootNode></$rootNode>");
-    }
+//     function __construct($rootNode){
+//         $this->xmlResult = new SimpleXMLElement("<$rootNode></$rootNode>");
+//     }
     
-    private function iteratechildren($object,$xml){
-        foreach ($object as $name=>$value) {
-            if (is_string($value) || is_numeric($value)) {
-                $xml->$name=$value;
-            } else {
-                $xml->$name=null;
-                $this->iteratechildren($value,$xml->$name);
-            }
-        }
-    }
+//     private function iteratechildren($object,$xml){
+//         foreach ($object as $name=>$value) {
+//             if (is_string($value) || is_numeric($value)) {
+//                 $xml->$name=$value;
+//             } else {
+//                 $xml->$name=null;
+//                 $this->iteratechildren($value,$xml->$name);
+//             }
+//         }
+//     }
     
-    function toXml($object) {
-        $this->iteratechildren($object,$this->xmlResult);
-        return $this->xmlResult->asXML();
-    }
-}
+//     function toXml($object) {
+//         $this->iteratechildren($object,$this->xmlResult);
+//         return $this->xmlResult->asXML();
+//     }
+// }
 
-//----test object----
-$ob->global->install->date = write"Tue, 31 Jan 2012 16:26:32 +0000";
-$ob->global->crypt = "a1c7cec1bc010e443bff2ef1df04fe3a";
-// print_r($ob); die;
-$ob->field2->field21="textA";
-// print_r($ob); die;
-$ob->field2->field22="textB";
-//----test object----
 
-$converter = new Obj2xml("config");
+// experimenting loading template
+// $local_xml_template = simplexml_load_file('local.xml.template');
+// $local_xml_template = simplexml_load_file('../app/etc/local.xml.template');
+// print_r($local_xml_template->global->install); die;
 
-header("Content-Type:text/xml");
+// todo incorporate header
+// header("Content-Type:text/xml");
 
-echo $converter->toXml($ob);
+// $ob->global->install->date = $xml->writeCData('Tue, 31 Jan 2012 16:26:32 +0000');
+// $ob->global->crypt = "<![CDATA[a1c7cec1bc010e443bff2ef1df04fe3a]]";
+// $ob->global->disable_local_modules = "<![CDATA[false]]";
+// $ob->global->resources->db->table_prefix = "<![CDATA[]]";
+// $ob->global->resources->default_setup->connection->host = '<![CDATA[' . $_SERVER['DB1_HOST'] . ']]>';
+// $ob->global->resources->default_setup->connection->username = '<![CDATA[' . $_SERVER['DB1_USER'] . ']]>';
+// $local_xml = $converter->toXml($ob);
+
+// $converter = new Obj2xml("config");
+
+// set up the document
+$xml = new XmlWriter();
+$xml->openMemory();
+$xml->startDocument('1.0');
+$xml->startElement('conifig');
+    $xml->startElement('global');
+        $xml->startElement('install');
+            $xml->startElement('date');
+                $xml->writeCData("Tue, 31 Jan 2012 16:26:32 +0000");
+            $xml->endElement(); //date
+        $xml->endElement(); //install
+        $xml->startElement('crypt');
+            $xml->startElement('key');
+                $xml->writeCData("a1c7cec1bc010e443bff2ef1df04fe3a");
+            $xml->endElement(); //key
+        $xml->endElement(); //crypt
+        $xml->startElement('disable_local_modules');
+            $xml->writeCData('false');
+        $xml->endElement(); // disable_local_modules
+        $xml->startElement('resources');
+            $xml->startElement('db');
+                $xml->startElement('table_prefix');
+                    $xml->writeCData('');
+                $xml->endElement(); // table_prefix
+            $xml->endElement(); // db
+            $xml->startElement('default_setup');
+                $xml->startElement('connection');
+                    $xml->startElement('host');
+                        $xml->writeCData($_SERVER['DB1_HOST']);
+                    $xml->endElement(); // host
+                    $xml->startElement('username');
+                        $xml->writeCData($_SERVER['DB1_USER']);
+                    $xml->endElement(); // username
+                    $xml->startElement('password');
+                        $xml->writeCData($_SERVER['DB1_PASS']);
+                    $xml->endElement(); // password
+                    $xml->startElement('dbname');
+                        $xml->writeCData($_SERVER['DB1_NAME']);
+                    $xml->endElement(); // dbname
+                    $xml->startElement('initStatements');
+                        $xml->writeCData('SET NAMES utf8');
+                    $xml->endElement(); // initStatements
+                    $xml->startElement('model');
+                        $xml->writeCData('mysql4');
+                    $xml->endElement(); // model
+                    $xml->startElement('type');
+                        $xml->writeCData('pdo_mysql');
+                    $xml->endElement(); // type
+                    $xml->startElement('pdoType');
+                        $xml->writeCData('');
+                    $xml->endElement(); // pdoType
+                    $xml->startElement('active');
+                        $xml->writeCData('1');
+                    $xml->endElement(); // active
+                $xml->endElement(); // connection
+            $xml->endElement(); // default_setup
+        $xml->endElement(); // resources
+        $xml->startElement('session_save');
+            $xml->writeCData('files');
+        $xml->endElement(); // session_save
+    $xml->endElement(); // global
+    $xml->startElement('admin');
+        $xml->startElement('routers');
+            $xml->startElement('adminhtml');
+                $xml->startElement('args');
+                    $xml->startElement('frontname');
+                        $xml->writeCData('admin');
+                    $xml->endElement(); //frontname
+                $xml->endElement(); //args
+            $xml->endElement(); //adminhtml
+        $xml->endElement(); //admin
+    $xml->endElement(); //admin
+$xml->endElement(); //config
+
+$handle = fopen('../app/etc/local.xml', 'a');
+fwrite($handle, $xml->outputMemory(true));
     
 ?>
