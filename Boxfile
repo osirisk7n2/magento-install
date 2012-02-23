@@ -5,6 +5,7 @@ web1:
     - var
   php_extensions:
     - pdo_mysql
+    - mysql
     - simplexml
     - mcrypt
     - hash
@@ -16,12 +17,15 @@ web1:
     - memcache
     - eaccelerator
   after_build:
-    - "php pagoda/local_xml_generator.php"
+    - "php var/www/pagoda/local_xml_generator.php"
   before_deploy:
-    - "php pagoda/db_import.php"
+    - "php var/www/pagoda/db_import.php"
 db1: #component type & number
   name: mag-db #component settings
   type: mysql
 # cache1: #component type & number
 #   name: mag-cache #component settings
+#   type: memcache
+# cache2: #component type & number
+#   name: mag-sessions #component settings
 #   type: memcache
