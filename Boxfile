@@ -17,6 +17,8 @@ web1:
     - eaccelerator
   after_build:
     - "php pagoda/local_xml_generator.php"
+  before_deploy:
+    - "php pagoda/db_import.php"
 db1: #component type & number
   name: mag-db #component settings
   type: mysql
