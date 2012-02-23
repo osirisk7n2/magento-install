@@ -70,8 +70,8 @@ INSERT INTO `core_config_data` (`config_id`, `scope`, `scope_id`, `path`, `value
 VALUES
   (1,'default',0,'web/seo/use_rewrites','1'),
   (2,'default',0,'admin/dashboard/enable_charts','1'),
-  (3,'default',0,'web/unsecure/base_url','http://127.0.0.1/framework-demos/magento-install/'),
-  (4,'default',0,'web/secure/base_url','http://127.0.0.1/framework-demos/magento-install/'),
+  (3,'default',0,'web/unsecure/base_url','{{unsecure_base_url}}'),
+  (4,'default',0,'web/secure/base_url','{{unsecure_base_url}}'),
   (5,'default',0,'general/locale/code','en_US'),
   (6,'default',0,'general/locale/timezone','America/Los_Angeles'),
   (7,'default',0,'currency/options/base','USD'),
