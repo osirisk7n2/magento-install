@@ -1,4 +1,11 @@
 web1: 
+  after_build:
+    - "echo downloading media"
+    - "wget -O /var/www/magento-media.tar.gz https://github.com/downloads/pagodabox/magento-install/magento-media.tar.gz"
+    - "echo extracting media"
+    - "tar xfz /var/www/magento-media.tar.gz"
+    - "echo removing media download"
+    - "rm /var/www/magento-media.tar.gz"
   before_deploy:
-    - "php /var/www/pagoda/db_import.php"
+  - "php /var/www/pagoda/db_import.php"
   php_max_execution_time: 300
