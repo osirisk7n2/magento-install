@@ -1,22 +1,22 @@
 <?php 
 
-include ('/var/www/pagoda/sql_parse.php');
+include ('/var/www/pagoda/sql_parse_phpbb.php');
 
-$link = mysql_connect($_SERVER["DB1_HOST"], $_SERVER["DB1_USER"], $_SERVER["DB1_PASS"]);
-if (!$link) {
-  die('Could not connect: ' . mysql_error());
-}
-mysql_select_db($_SERVER["DB1_NAME"]);
-$parseObj = new ParseSql('/var/www/pagoda/magento_sample_data_for_1.6.1.0.sql');
+$dbms_schema = '/var/www/pagoda/magento_sample_data_for_1.6.1.0.sql';
 
-// echo 'sql file parse: START' . '<br />';
+$sql_query = @fread(@fopen($dbms_schema, 'r'), @filesize($dbms_schema)) or die('problem ');
+$sql_query = remove_remarks($sql_query);
+$sql_query = split_sql_file($sql_query, ';');
 
-$res      = $parseObj->startParsing(); 
+$host = $_SERVER["DB1_HOST"];
+$user = $_SERVER["DB1_USER"];
+$pass = $_SERVER["DB1_PASS"];
+$db   = $_SERVER["DB1_NAME"];
 
-if($res) { 
-  // echo 'sql file parse: SUCCESSFUL';
-}
-else {
-  // echo 'sql file parse: FAILED';
+mysql_connect($host,$user,$pass) or die('error connection');
+mysql_select_db($db) or die('error database selection');
+
+foreach($sql_query as $sql){
+mysql_query($sql) or die('error in query');
 }
 ?>
