@@ -99,7 +99,7 @@ CREATE TABLE `admin_user` (
 
 LOCK TABLES `admin_user` WRITE;
 
-insert  into `admin_user`(`user_id`,`firstname`,`lastname`,`email`,`username`,`password`,`created`,`modified`,`logdate`,`lognum`,`reload_acl_flag`,`is_active`,`extra`,`rp_token`,`rp_token_created_at`) values (1,'Store','Owner','owner@example.com','admin','e53f3a2b9372babb593ed61c119c5ee1:El','2011-10-24 16:25:38','2011-10-24 13:25:06','2011-10-24 13:25:38',3,0,1,'N;',NULL,NULL);
+insert  into `admin_user`(`user_id`,`firstname`,`lastname`,`email`,`username`,`password`,`created`,`modified`,`logdate`,`lognum`,`reload_acl_flag`,`is_active`,`extra`,`rp_token`,`rp_token_created_at`) values (1,'Store','Owner','owner@example.com','admin','4297f44b13955235245b2497399d7a93','2011-10-24 16:25:38','2011-10-24 13:25:06','2011-10-24 13:25:38',3,0,1,'N;',NULL,NULL);
 
 UNLOCK TABLES;
 
