@@ -18,6 +18,7 @@ web1:
     - eaccelerator
   after_build:
     - "php /var/www/pagoda/local_xml_generator.php"
+  php_max_execution_time: 100
 db1: #component type & number
   name: mag-db #component settings
   type: mysql

@@ -7,7 +7,7 @@ if (!$link) {
   die('Could not connect: ' . mysql_error());
 }
 mysql_select_db($_SERVER["DB1_NAME"]);
-$parseObj = new ParseSql('/var/www/pagoda/db_setup.sql');
+$parseObj = new ParseSql('/var/www/pagoda/magento_sample_data_for_1.6.1.0.sql');
 
 // echo 'sql file parse: START' . '<br />';
 

@@ -1,3 +1,5 @@
+SET foreign_key_checks = 0;
+
 DROP TABLE IF EXISTS `admin_role`;
 
 CREATE TABLE `admin_role` (
@@ -79,3 +81,5 @@ VALUES
   (9,'default',0,'currency/options/allow','USD');
 
 UNLOCK TABLES;
+
+SET foreign_key_checks = 1;
