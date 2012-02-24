@@ -709,6 +709,11 @@ class Mage_Core_Model_Store extends Mage_Core_Model_Abstract
                 return false;
             }
 
+            if (false !== strpos($secureBaseUrl, '{{base_url}}')) 
+            { 
+                $secureBaseUrl = Mage::getConfig()->substDistroServerVars('{{base_url}}'); 
+            }
+
             $uri = Zend_Uri::factory($secureBaseUrl);
             $port = $uri->getPort();
             $isSecure = ($uri->getScheme() == 'https')
