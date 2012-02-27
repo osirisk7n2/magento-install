@@ -400,7 +400,8 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
         }
 
         if ($memSize === null || $memUsed === null) {
-            Zend_Cache::throwException('Can\'t get filling percentage');
+            // Zend_Cache::throwException('Can\'t get filling percentage');
+            return 0;
         }
 
         return ((int) (100. * ($memUsed / $memSize)));
