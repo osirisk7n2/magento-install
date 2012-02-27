@@ -1,19 +1,5 @@
 <?php 
 
-// vars for local testing
-
-// $_SERVER["DB1_HOST"] = "tunnel.pagodabox.com";
-// $_SERVER["DB1_PORT"] = "3306";
-// $_SERVER["DB1_NAME"] = "your_db_name";
-// $_SERVER["DB1_USER"] = "your_db_user";
-// $_SERVER["DB1_PASS"] = "your_db_pass";
-
-// $_SERVER["CACHE1_HOST"] = "tunnel.pagodabox.com";
-// $_SERVER["CACHE1_PORT"] = "11211";
-
-// $_SERVER["CACHE2_HOST"] = "tunnel.pagodabox.com";
-// $_SERVER["CACHE2_PORT"] = "11212";
-
 // set up the document
 $xml = new XmlWriter();
 $xml->openMemory();
@@ -72,58 +58,8 @@ $xml->startElement('conifig');
             $xml->endElement(); // default_setup
         $xml->endElement(); // resources
         $xml->startElement('session_save');
-            $xml->writeCData('memcache');
+            $xml->writeCData('files');
         $xml->endElement(); // session_save
-        $xml->startElement('session_save_path');
-            $xml->writeCData('tcp://' . $_SERVER["CACHE2_HOST"] . ':' . $_SERVER["CACHE2_PORT"] . '?persistent=1&weight=2&timeout=10&retry_interval=10');
-        $xml->endElement(); // session_save_path
-        $xml->startElement('session_cache_limiter');
-            $xml->writeCData('');
-        $xml->endElement(); // session_cache_limiter
-        $xml->startElement('cache');
-            $xml->startElement('backend');
-                $xml->writeCData('memcached');
-            $xml->endElement(); // slow_backend
-            $xml->startElement('slow_backend');
-                $xml->writeCData('database');
-            $xml->endElement(); // backend
-            $xml->startElement('slow_backend_store_data');
-                $xml->writeCData('0');
-            $xml->endElement(); // slow_backend_store_data
-            $xml->startElement('auto_refresh_fast_cache');
-                $xml->writeCData('0');
-            $xml->endElement(); // auto_refresh_fast_cache
-            $xml->startElement('memcached');
-                $xml->startElement('servers');
-                    $xml->startElement('server');
-                        $xml->startElement('host');
-                            $xml->writeCData($_SERVER["CACHE1_HOST"]);
-                        $xml->endElement(); // host
-                        $xml->startElement('port');
-                            $xml->writeCData($_SERVER["CACHE1_PORT"]);
-                        $xml->endElement(); // port
-                        $xml->startElement('persistent');
-                            $xml->writeCData('1');
-                        $xml->endElement(); // persistent
-                        $xml->startElement('weight');
-                            $xml->writeCData('2');
-                        $xml->endElement(); // weight
-                        $xml->startElement('timeout');
-                            $xml->writeCData('10');
-                        $xml->endElement(); // timeout
-                        $xml->startElement('retry_interval');
-                            $xml->writeCData('10');
-                        $xml->endElement(); // retry_interval
-                        $xml->startElement('status');
-                            $xml->writeCData('1');
-                        $xml->endElement(); // status
-                    $xml->endElement(); // server
-                $xml->endElement(); // servers
-                $xml->startElement('compression');
-                    $xml->writeCData('0');
-                $xml->endElement(); // compression
-            $xml->endElement(); // memcached
-        $xml->endElement(); // cache
     $xml->endElement(); // global
     $xml->startElement('admin');
         $xml->startElement('routers');
@@ -138,8 +74,7 @@ $xml->startElement('conifig');
     $xml->endElement(); //admin
 $xml->endElement(); //config
 
-// $handle = fopen('../local-test.xml', 'w');
-$handle = fopen('/var/www/app/etc/local.xml', 'w');
+$handle = fopen('/var/www/app/etc/local.xml', 'a');
 fwrite($handle, $xml->outputMemory(true));
     
 ?>
