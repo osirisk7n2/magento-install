@@ -1,6 +1,6 @@
 web1: 
   after_build:
-    - "tar -xzvf /var/www/magento-media.tar.gz"
+    - "tar -xzvf magento-media.tar.gz"
     # - "rm /var/www/magento-media.tar.gz"
   before_deploy:
   - "php /var/www/pagoda/db_import.php"
