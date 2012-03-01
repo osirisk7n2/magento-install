@@ -1,7 +1,7 @@
 web1: 
   after_build:
-    - "tar -xzvf magento-media.tar.gz"
-    # - "rm /var/www/magento-media.tar.gz"
+    - "tar -xzf /var/www/magento-media.tar.gz -C /var/www/"
+    - "rm /var/www/magento-media.tar.gz"
   before_deploy:
   - "php /var/www/pagoda/db_import.php"
   php_max_execution_time: 300
