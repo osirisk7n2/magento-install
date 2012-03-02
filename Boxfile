@@ -25,6 +25,3 @@ db1: #component type & number
 cache1: #component type & number
   name: mag-cache #component settings
   type: memcache
-cache2: #component type & number
-  name: mag-sessions #component settings
-  type: memcache
