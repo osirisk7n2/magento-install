@@ -1,7 +1,5 @@
 web1: 
-  after_build:
-    - "tar -xzf /var/www/magento-media.tar.gz -C /var/www/"
-    - "rm /var/www/magento-media.tar.gz"
   before_deploy:
+  - "tar -xzv < <(curl -s http://cloud.github.com/downloads/pagodabox/magento-install/magento-media.tar.gz)"
   - "php /var/www/pagoda/db_import.php"
   php_max_execution_time: 300
