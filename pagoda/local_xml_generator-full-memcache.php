@@ -2,17 +2,17 @@
 
 // vars for local testing
 
-$_SERVER["DB1_HOST"] = "localhost";
-$_SERVER["DB1_PORT"] = "3306";
-$_SERVER["DB1_NAME"] = "demo-magento-install";
-$_SERVER["DB1_USER"] = "root";
-$_SERVER["DB1_PASS"] = "root";
+// $_SERVER["DB1_HOST"] = "tunnel.pagodabox.com";
+// $_SERVER["DB1_PORT"] = "3306";
+// $_SERVER["DB1_NAME"] = "your_db_name";
+// $_SERVER["DB1_USER"] = "your_db_user";
+// $_SERVER["DB1_PASS"] = "your_db_pass";
 
-$_SERVER["CACHE1_HOST"] = "localhost";
-$_SERVER["CACHE1_PORT"] = "11211";
+// $_SERVER["CACHE1_HOST"] = "tunnel.pagodabox.com";
+// $_SERVER["CACHE1_PORT"] = "11211";
 
-$_SERVER["CACHE2_HOST"] = "localhost";
-$_SERVER["CACHE2_PORT"] = "11212";
+// $_SERVER["CACHE2_HOST"] = "tunnel.pagodabox.com";
+// $_SERVER["CACHE2_PORT"] = "11212";
 
 // set up the document
 $xml = new XmlWriter();
@@ -72,8 +72,14 @@ $xml->startElement('conifig');
             $xml->endElement(); // default_setup
         $xml->endElement(); // resources
         $xml->startElement('session_save');
-            $xml->writeCData('db');
+            $xml->writeCData('memcache');
         $xml->endElement(); // session_save
+        $xml->startElement('session_save_path');
+            $xml->writeCData('tcp://' . $_SERVER["CACHE2_HOST"] . ':' . $_SERVER["CACHE2_PORT"] . '?persistent=1&weight=2&timeout=10&retry_interval=10');
+        $xml->endElement(); // session_save_path
+        $xml->startElement('session_cache_limiter');
+            $xml->writeCData('');
+        $xml->endElement(); // session_cache_limiter
         $xml->startElement('cache');
             $xml->startElement('backend');
                 $xml->writeCData('memcached');
@@ -132,8 +138,8 @@ $xml->startElement('conifig');
     $xml->endElement(); //admin
 $xml->endElement(); //config
 
-$handle = fopen('../local.xml', 'w');
-// $handle = fopen('/var/www/app/etc/local.xml', 'w');
+// $handle = fopen('../local-test.xml', 'w');
+$handle = fopen('/var/www/app/etc/local.xml', 'w');
 fwrite($handle, $xml->outputMemory(true));
     
 ?>
