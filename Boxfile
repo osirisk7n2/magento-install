@@ -10,7 +10,7 @@ web1:
     - hash
     - gd
     - dom
-    - inconv
+    - iconv
     - curl
     - soap
     - memcache
