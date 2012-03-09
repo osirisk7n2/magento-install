@@ -17,7 +17,10 @@ web1:
     - memcache
     - eaccelerator
   after_build:
+    # Run script that will generate local.xml config file and place it in app/etc/
     - "php /var/www/pagoda/local_xml_generator.php"
+  before_deploy:
+  - mysql -h $DB1_HOST --port $DB1_PORT -u $DB_USER1 -p$DB_PASS $DB_NAME < /var/www/pagoda/magento_sample_data_for_1.6.1.0.sql
   php_max_execution_time: 100
 db1: #component type & number
   name: mag-db #component settings
