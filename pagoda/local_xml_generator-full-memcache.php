@@ -1,20 +1,5 @@
 <?php 
 
-// vars for local testing
-
-// $_SERVER["DB1_HOST"] = "tunnel.pagodabox.com";
-// $_SERVER["DB1_PORT"] = "3306";
-// $_SERVER["DB1_NAME"] = "your_db_name";
-// $_SERVER["DB1_USER"] = "your_db_user";
-// $_SERVER["DB1_PASS"] = "your_db_pass";
-
-// $_SERVER["CACHE1_HOST"] = "tunnel.pagodabox.com";
-// $_SERVER["CACHE1_PORT"] = "11211";
-
-// $_SERVER["CACHE2_HOST"] = "tunnel.pagodabox.com";
-// $_SERVER["CACHE2_PORT"] = "11212";
-
-// set up the document
 $xml = new XmlWriter();
 $xml->openMemory();
 $xml->startDocument('1.0');
@@ -138,7 +123,6 @@ $xml->startElement('conifig');
     $xml->endElement(); //admin
 $xml->endElement(); //config
 
-// $handle = fopen('../local-test.xml', 'w');
 $handle = fopen('/var/www/app/etc/local.xml', 'w');
 fwrite($handle, $xml->outputMemory(true));
     

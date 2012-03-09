@@ -1,6 +1,5 @@
 <?php 
 
-// set up the document
 $xml = new XmlWriter();
 $xml->openMemory();
 $xml->startDocument('1.0');

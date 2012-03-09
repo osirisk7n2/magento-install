@@ -1,20 +1,5 @@
 <?php 
 
-// vars for local testing
-
-// $_SERVER["DB1_HOST"] = "localhost";
-// $_SERVER["DB1_PORT"] = "3306";
-// $_SERVER["DB1_NAME"] = "demo-magento-install";
-// $_SERVER["DB1_USER"] = "root";
-// $_SERVER["DB1_PASS"] = "root";
-
-// $_SERVER["CACHE1_HOST"] = "localhost";
-// $_SERVER["CACHE1_PORT"] = "11211";
-
-// $_SERVER["CACHE2_HOST"] = "localhost";
-// $_SERVER["CACHE2_PORT"] = "11212";
-
-// set up the document
 $xml = new XmlWriter();
 $xml->openMemory();
 $xml->startDocument('1.0');
@@ -132,7 +117,6 @@ $xml->startElement('conifig');
     $xml->endElement(); //admin
 $xml->endElement(); //config
 
-// $handle = fopen('../local.xml', 'w');
 $handle = fopen('/var/www/app/etc/local.xml', 'w');
 fwrite($handle, $xml->outputMemory(true));
     
