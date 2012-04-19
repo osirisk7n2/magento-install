@@ -3,7 +3,7 @@
 $xml = new XmlWriter();
 $xml->openMemory();
 $xml->startDocument('1.0');
-$xml->startElement('conifig');
+$xml->startElement('config');
     $xml->startElement('global');
         $xml->startElement('install');
             $xml->startElement('date');
