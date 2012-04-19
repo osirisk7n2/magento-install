@@ -7,12 +7,12 @@ $xml->startElement('conifig');
     $xml->startElement('global');
         $xml->startElement('install');
             $xml->startElement('date');
-                $xml->writeCData("Tue, 31 Jan 2012 16:26:32 +0000");
+                $xml->writeCData(date('r'));
             $xml->endElement(); //date
         $xml->endElement(); //install
         $xml->startElement('crypt');
             $xml->startElement('key');
-                $xml->writeCData("a1c7cec1bc010e443bff2ef1df04fe3a");
+                $xml->writeCData(hash('md5', $_SERVER['APP_NAME']));
             $xml->endElement(); //key
         $xml->endElement(); //crypt
         $xml->startElement('disable_local_modules');
