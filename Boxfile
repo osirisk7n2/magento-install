@@ -14,8 +14,14 @@ web1:
     - iconv
     - curl
     - soap
+<<<<<<< HEAD
     - memcache
     - eaccelerator
+=======
+    - eaccelerator
+    - redis
+  static_expire: 31536000
+>>>>>>> 3d450503a9034d02901d0c5e4d6542f3402557c5
   after_build:
     # Run script that will generate local.xml config file and place it in app/etc/
     - "php /var/www/pagoda/local_xml_generator.php"
@@ -25,4 +31,8 @@ db1: #component type & number
   type: mysql
 cache1: #component type & number
   name: mag-cache #component settings
+<<<<<<< HEAD
   type: memcache
+=======
+  type: redis
+>>>>>>> 3d450503a9034d02901d0c5e4d6542f3402557c5
