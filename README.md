@@ -37,7 +37,7 @@ The following is an explanation of how this Quickstart was created so you can us
 <pre>
     <code>
         before_deploy:
-            - "tar -xz \< \<(curl -s http://cloud.github.com/downloads/pagodabox/magento-install/magento-media.tar.gz)"
+            - "tar -xz &lt; &lt;(curl -s http://cloud.github.com/downloads/pagodabox/magento-install/magento-media.tar.gz)"
     </code>
 </pre>
 
@@ -45,7 +45,7 @@ The following is an explanation of how this Quickstart was created so you can us
 
 <pre>
     <code>
-        - "mysql -h $DB1_HOST --port $DB1_PORT -u $DB1_USER -p$DB1_PASS $DB1_NAME \< /var/www/pagoda/magento_sample_data_for_1.6.1.0.sql"
+        - "mysql -h $DB1_HOST --port $DB1_PORT -u $DB1_USER -p$DB1_PASS $DB1_NAME &lt; /var/www/pagoda/magento_sample_data_for_1.6.1.0.sql"
     </code>
 </pre>
 
