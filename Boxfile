@@ -20,8 +20,8 @@ web1:
     # Run script that will generate local.xml config file and place it in app/etc/
     - "php pagoda/local_xml_generator.php"
   before_deploy:
-      - "cp pagoda/media/.htaccess media/"
-      - "cp pagoda/var/.htaccess var/"
+    - "cp pagoda/media/.htaccess media/"
+    - "cp pagoda/var/.htaccess var/"
   php_max_execution_time: 100
 db1: #component type & number
   name: mag-db #component settings
