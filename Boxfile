@@ -18,7 +18,10 @@ web1:
     - eaccelerator
   after_build:
     # Run script that will generate local.xml config file and place it in app/etc/
-    - "php /var/www/pagoda/local_xml_generator.php"
+    - "php pagoda/local_xml_generator.php"
+  before_deploy:
+      - "cp pagoda/media/.htaccess media/"
+      - "cp pagoda/var/.htaccess var/"
   php_max_execution_time: 100
 db1: #component type & number
   name: mag-db #component settings
